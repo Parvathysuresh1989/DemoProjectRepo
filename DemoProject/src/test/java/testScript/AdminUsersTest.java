@@ -1,14 +1,18 @@
 package testScript;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import pages.AdminUsersPage;
 import pages.LoginPage;
+import pages.LogoutPage;
 import utilities.ExcelUtilities;
 import utilities.FakerUtility;
 
 public class AdminUsersTest extends Base
 {
+	public LogoutPage logoutpage;
+	AdminUsersPage adminuserspage;
 	@Test
 	public void adminUsers() throws Exception
 	{
@@ -25,18 +29,21 @@ public class AdminUsersTest extends Base
 		//String uname=ExcelUtilities.readStringData(1, 2, "adminusers");
 		//String pwd=ExcelUtilities.readStringData(1, 3, "adminusers");
 		LoginPage loginpage=new LoginPage(driver);
-		loginpage.enterUserName(username);
-		loginpage.enterPassword(password);
-		loginpage.clickSignIn();
-		AdminUsersPage adminuserspage=new AdminUsersPage(driver);
-		adminuserspage.adminUsersMoreInfo();
+		loginpage.enterUserName(username).enterPassword(password);
+		//loginpage.enterPassword(password);
+		logoutpage=loginpage.clickSignIn();
+		adminuserspage=logoutpage.adminUsersMoreInfo();
+		//AdminUsersPage adminuserspage=new AdminUsersPage(driver);
+		//adminuserspage.adminUsersMoreInfo();
 		adminuserspage.clickNew();
 		adminuserspage.enterUserName(uname);
 		adminuserspage.enterPassword(pwd);
 		adminuserspage.selectUserType();
 		adminuserspage.clickSaveButton();
-		adminuserspage.isAlertDisplayed();
-		adminuserspage.closeAlert();
+		//adminuserspage.isAlertDisplayed();
+		boolean alertmessage=adminuserspage.alertdisplay();
+		Assert.assertTrue(alertmessage);
+		//adminuserspage.closeAlert();
 	}
 	
 	

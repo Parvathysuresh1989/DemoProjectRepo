@@ -11,7 +11,7 @@ import utilities.PageUtility;
 public class AdminUsersPage 
 {
 	WebDriver driver;
-	@FindBy(xpath="//a[@class='small-box-footer'][1]")WebElement moreinfo;
+	@FindBy(xpath="//a[@class='small-box-footer'][1]")WebElement adminusermoreinfo;
 	@FindBy(xpath="//a[@onclick='click_button(1)']")WebElement newbutton;
 	@FindBy(xpath="//input[@id='username']")WebElement username;
 	@FindBy(xpath="//input[@id='password']")WebElement password;
@@ -26,39 +26,49 @@ public class AdminUsersPage
 	}
 	public void adminUsersMoreInfo()
 	{
-		moreinfo.click();
+		adminusermoreinfo.click();
 	}
-	public void clickNew()
+	public AdminUsersPage clickNew()
 	{
 		newbutton.click();
+		return this;
 	}
-	public void enterUserName(String uname)
+	public AdminUsersPage enterUserName(String uname)
 	{
 		username.sendKeys(uname);
+		return this;
 	}
-	public void enterPassword(String pwd)
+	public AdminUsersPage enterPassword(String pwd)
 	{
 		password.sendKeys(pwd);
+		return this;
 	}
-	public void selectUserType()
+	public AdminUsersPage selectUserType()
 	{
 		usertype.click();
 		//Select select=new Select(usertype);
 		//select.selectByIndex(1);
 		PageUtility pageutility=new PageUtility();
 		pageutility.selectByIndex(usertype, 1);//using pageUtility
+		return this;
 	}
-	public void clickSaveButton()
+	public AdminUsersPage clickSaveButton()
 	{
 		savebutton.click();
+		return this;
 	}
-	public void isAlertDisplayed() 
+	/*public void isAlertDisplayed() 
 	{
 		alert.isDisplayed();
 	}
 	public void closeAlert()
 	{
 		closealert.click();
+	}*/
+	public boolean alertdisplay()
+	{
+		 return alert.isDisplayed();
+		
 	}
 	
 }

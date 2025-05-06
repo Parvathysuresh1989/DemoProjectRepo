@@ -23,17 +23,20 @@ public class ManageNewsPage
 	{
 		managenewsmoreinfo.click();
 	}
-	public void clickNews()
+	public ManageNewsPage clickNews()
 	{
 		clicknews.click();
+		return this;
 	}
-	public void enterNews(String news)
+	public ManageNewsPage enterNews(String news)
 	{
 		enternews.sendKeys(news);
+		return this;
 	}
-	public void saveButtonclick()
+	public ManageNewsPage saveButtonclick()
 	{
 		save.click();
+		return this;
 	}
 	public boolean alertdisplay()
 	{
